@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROVIGEST · Presentació del projecte</title>
+<style>
+  :root{
+    --ink:#12263A;
+    --ink-soft:#4A5B6C;
+    --paper:#F3F6F8;
+    --white:#FFFFFF;
+    --teal:#0E7C86;
+    --teal-dark:#0A5C64;
+    --amber:#F2A33A;
+    --line:#D5DEE5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color:var(--ink);background:var(--paper);line-height:1.6;font-size:17px;
+  }
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  header{background:var(--white);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+  .logo{font-weight:800;font-size:22px;letter-spacing:.02em;color:var(--ink)}
+  .logo span{color:var(--teal)}
+  .pg{font-weight:600;font-size:15px;color:var(--ink-soft)}
+  .btn{
+    display:inline-block;background:var(--teal);color:var(--white);
+    padding:13px 26px;border-radius:6px;font-weight:700;text-decoration:none;
+    border:2px solid var(--teal);font-size:16px;
+  }
+  .btn:hover{background:var(--teal-dark);border-color:var(--teal-dark)}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--white)}
+
+  .hero{padding:72px 0 64px}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  h1{font-size:clamp(36px,5.2vw,58px);line-height:1.08;font-weight:800;letter-spacing:-.02em;max-width:14ch}
+  .lead{margin-top:22px;font-size:19px;color:var(--ink-soft);max-width:46ch}
+  .cta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+  .diagram{width:100%;height:auto}
+  .flow{stroke-dasharray:6 8;animation:flow 1.6s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-14}}
+  @media (prefers-reduced-motion:reduce){.flow{animation:none}}
+
+  .pagehead{padding:56px 0 8px}
+  .pagehead h1{max-width:none;font-size:clamp(32px,4.6vw,48px)}
+
+  section{padding:64px 0}
+  h2{font-size:clamp(26px,3.4vw,36px);line-height:1.15;font-weight:800;letter-spacing:-.01em;max-width:26ch}
+  h3{font-size:19px}
+  .intro{margin-top:14px;color:var(--ink-soft);max-width:62ch}
+  .alt{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .sub{margin-top:44px}
+  .sub h3{font-size:22px;padding-left:14px;border-left:5px solid var(--amber);margin-bottom:14px}
+  .sub p{margin-bottom:12px;max-width:72ch}
+  .sub ul{margin:6px 0 14px 22px;max-width:72ch}
+  .sub li{margin-bottom:6px}
+
+  .facts{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:10px;background:var(--white)}
+  .facts div{padding:18px 20px;border-right:1px solid var(--line)}
+  .facts div:last-child{border-right:0}
+  .facts small{display:block;color:var(--ink-soft);font-size:14px}
+  .facts b{font-size:17px}
+
+  .svc-grid{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+  .svc{padding:26px 28px 26px 0;border-bottom:1px solid var(--line)}
+  .svc:nth-child(3n+2),.svc:nth-child(3n){padding-left:28px;border-left:1px solid var(--line)}
+  .svc h3{margin-bottom:8px}
+  .svc p{color:var(--ink-soft);font-size:16px}
+
+  .steps{margin-top:36px;list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:s}
+  .steps li{counter-increment:s;padding-top:20px;border-top:4px solid var(--teal);position:relative}
+  .steps li::before{
+    content:counter(s);position:absolute;top:-4px;right:0;background:var(--amber);color:var(--ink);
+    font-weight:800;font-size:14px;width:28px;height:28px;display:grid;place-items:center;border-radius:0 0 0 8px;
+  }
+  .steps h3{font-size:18px;margin-bottom:6px}
+  .steps p{font-size:15.5px;color:var(--ink-soft)}
+
+  .team{margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .person{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:24px}
+  .avatar{width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--white);display:grid;place-items:center;font-weight:800;font-size:18px;margin-bottom:14px}
+  .person h3{font-size:18px}
+  .person .role{color:var(--teal-dark);font-weight:700;font-size:15px;margin-bottom:8px}
+  .person p{font-size:15.5px;color:var(--ink-soft)}
+
+  .mvv{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .mvv .box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:24px}
+  .mvv h3{margin-bottom:8px;color:var(--teal-dark)}
+  .mvv ul{margin-left:20px}
+  .mvv li{margin-bottom:6px}
+
+  .ods{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .ods div{padding:18px 20px;border-radius:8px;background:var(--ink);color:var(--white)}
+  .ods div:nth-child(2){background:var(--teal-dark)}
+  .ods div:nth-child(3){background:#8A5A0F}
+  .ods b{display:block;margin-bottom:6px}
+  .ods span{font-size:15px;color:#E1E9EF}
+
+  .why{background:var(--ink);color:var(--white)}
+  .why h2{color:var(--white)}
+  .why-grid{margin-top:34px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px 56px}
+  .why-item{padding-left:20px;border-left:4px solid var(--amber)}
+  .why-item h3{font-size:18px;margin-bottom:4px}
+  .why-item p{color:#C3D0DB;font-size:16px}
+
+  .tbl-wrap{overflow-x:auto;margin:10px 0 18px;border:1px solid var(--line);border-radius:10px;background:var(--white)}
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:15.5px}
+  th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:var(--ink);color:var(--white);font-weight:700}
+  td.n,th.n{text-align:right;white-space:nowrap}
+  tr.grp td{background:var(--paper);font-weight:700}
+  tr.tot td{background:#E7F2F3;font-weight:800;border-top:2px solid var(--teal)}
+  tr.hl td{background:#FFF4E0;font-weight:600}
+  tbody tr:last-child td{border-bottom:0}
+
+  .swot{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:10px 0 18px}
+  .swot div{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:20px 22px;border-top:5px solid var(--teal)}
+  .swot div.neg{border-top-color:var(--amber)}
+  .swot h4{font-size:18px;margin-bottom:8px}
+  .swot ul{margin-left:20px}
+  .swot li{margin-bottom:5px;font-size:15.5px}
+
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:12px 0 18px}
+  .plan{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:24px}
+  .plan.best{border:2px solid var(--teal)}
+  .plan h4{font-size:20px}
+  .price{font-size:30px;font-weight:800;color:var(--teal-dark);margin:6px 0 10px}
+  .price small{font-size:15px;font-weight:600;color:var(--ink-soft)}
+  .plan ul{margin-left:20px;font-size:15.5px}
+  .plan li{margin-bottom:5px}
+
+  .bar-fin{display:flex;height:34px;border-radius:8px;overflow:hidden;margin:14px 0 6px;font-size:13px;font-weight:700}
+  .bar-fin span{display:grid;place-items:center;color:var(--white);white-space:nowrap;padding:0 6px}
+  .legend{font-size:14px;color:var(--ink-soft);margin-bottom:14px}
+
+  .callout{background:#E7F2F3;border-left:5px solid var(--teal);border-radius:0 8px 8px 0;padding:18px 22px;margin:14px 0;max-width:72ch}
+
+  .links{margin-top:24px;list-style:none;display:grid;gap:12px;max-width:760px}
+  .links li{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:16px 20px}
+  .links a{font-weight:700;color:var(--teal-dark)}
+  .links p{font-size:15px;color:var(--ink-soft);margin-top:2px}
+
+  .contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:28px}
+  .card p{margin-bottom:10px}
+  .card strong{display:block;font-size:14px;color:var(--ink-soft);font-weight:600}
+  form label{display:block;font-weight:600;font-size:15px;margin:14px 0 6px}
+  form input,form textarea{width:100%;padding:12px;border:1px solid #9FB0BE;border-radius:6px;font:inherit;background:var(--white);color:var(--ink)}
+  form textarea{min-height:110px;resize:vertical}
+  form button{margin-top:18px;cursor:pointer;font:inherit;font-weight:700}
+
+  footer{padding:28px 0;border-top:1px solid var(--line);color:var(--ink-soft);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media (max-width:860px){
+    .hero .wrap,.contact .wrap,.mvv,.swot{grid-template-columns:1fr}
+    .svc-grid,.team,.plans,.ods{grid-template-columns:1fr}
+    .svc,.svc:nth-child(3n+2),.svc:nth-child(3n){padding:24px 0;border-left:0}
+    .steps{grid-template-columns:1fr 1fr}
+    .why-grid{grid-template-columns:1fr}
+    .facts{grid-template-columns:1fr 1fr}
+    .facts div{border-bottom:1px solid var(--line)}
+    .hero{padding:44px 0}
+    section{padding:48px 0}
+  }
+  @media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <span class="logo">PRO<span>VI</span>GEST</span>
+    <span class="pg">Presentació del projecte</span>
+  </div>
+</header>
+<main>
+  <div class="hero" id="inici">
+    <div class="wrap">
+      <div>
+        <h1>Els teus proveïdors, sota control.</h1>
+        <p class="lead">A PROVIGEST gestionem els proveïdors de la teva empresa: els busquem, els avaluem, hi negociem i vigilem que compleixin. Tu tractes amb un sol interlocutor.</p>
+        <div class="cta">
+          <a class="btn" href="#contacte">Demana una reunió</a>
+          <a class="btn ghost" href="#activitat">Veure serveis</a>
+        </div>
+      </div>
+      <svg class="diagram" viewBox="0 0 520 420" role="img" aria-label="Diversos proveïdors connectats a PROVIGEST, que es connecta amb la teva empresa">
+        <g fill="none" stroke="#0E7C86" stroke-width="2.5" stroke-linecap="round">
+          <path class="flow" d="M64 40 C150 40 150 210 226 210"/>
+          <path class="flow" d="M64 108 C150 108 150 210 226 210"/>
+          <path class="flow" d="M64 176 C150 176 150 210 226 210"/>
+          <path class="flow" d="M64 244 C150 244 150 210 226 210"/>
+          <path class="flow" d="M64 312 C150 312 150 210 226 210"/>
+          <path class="flow" d="M64 380 C150 380 150 210 226 210"/>
+        </g>
+        <path d="M316 210 L418 210" stroke="#12263A" stroke-width="4" stroke-linecap="round"/>
+        <g fill="#FFFFFF" stroke="#12263A" stroke-width="2.5">
+          <circle cx="46" cy="40" r="16"/><circle cx="46" cy="108" r="16"/>
+          <circle cx="46" cy="176" r="16"/><circle cx="46" cy="244" r="16"/>
+          <circle cx="46" cy="312" r="16"/><circle cx="46" cy="380" r="16"/>
+        </g>
+        <circle cx="271" cy="210" r="46" fill="#12263A"/>
+        <text x="271" y="215" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-weight="800" font-size="13" fill="#FFFFFF">PROVIGEST</text>
+        <rect x="418" y="176" width="92" height="68" rx="8" fill="#F2A33A"/>
+        <text x="464" y="216" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-weight="800" font-size="14" fill="#12263A">La teva empresa</text>
+        <text x="46" y="14" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="12" fill="#4A5B6C">Proveïdors</text>
+      </svg>
+    </div>
+  </div>
+
+  <section class="alt" id="activitat">
+    <div class="wrap">
+      <h2>Activitat comercial de l'empresa</h2>
+      <p class="intro">PROVIGEST és una empresa de serveis que gestiona els proveïdors d'altres empreses. Ens encarreguem del treball diari amb proveïdors perquè el teu equip es dediqui al seu negoci.</p>
+
+      <div class="facts">
+        <div><small>Nom comercial</small><b>PROVIGEST</b></div>
+        <div><small>Tipus de negoci</small><b>Serveis a empreses (B2B)</b></div>
+        <div><small>Forma jurídica</small><b>Societat limitada</b></div>
+        <div><small>Àmbit</small><b>Tarragona i província</b></div>
+      </div>
+
+      <div class="svc-grid">
+        <div class="svc"><h3>Cerca i selecció</h3><p>Trobem proveïdors que s'ajusten al que necessites i els comparem per preu, qualitat i terminis.</p></div>
+        <div class="svc"><h3>Homologació</h3><p>Revisem documentació, certificats i solvència abans que un proveïdor treballi amb tu.</p></div>
+        <div class="svc"><h3>Negociació de condicions</h3><p>Negociem preus, terminis de lliurament i formes de pagament en nom de la teva empresa.</p></div>
+        <div class="svc"><h3>Seguiment de comandes</h3><p>Controlem que cada comanda arribi completa i a temps, i gestionem les incidències.</p></div>
+        <div class="svc"><h3>Factures i pagaments</h3><p>Comprovem les factures amb les comandes i t'avisem dels venciments perquè no hi hagi sorpreses.</p></div>
+        <div class="svc"><h3>Avaluació contínua</h3><p>Mesurem el rendiment de cada proveïdor i et proposem canvis quan alguna cosa no funciona.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proces">
+    <div class="wrap">
+      <h2>Com treballem</h2>
+      <p class="intro">Un procés clar, amb resultats que pots revisar a cada fase.</p>
+      <ol class="steps">
+        <li><h3>Analitzem</h3><p>Revisem els teus proveïdors actuals, les compres i els problemes habituals.</p></li>
+        <li><h3>Ordenem</h3><p>Homologuem, classifiquem i deixem totes les dades en un únic registre.</p></li>
+        <li><h3>Gestionem</h3><p>Assumim la relació diària: comandes, incidències, negociacions i pagaments.</p></li>
+        <li><h3>Informem</h3><p>Cada mes reps un informe amb el rendiment dels teus proveïdors i els estalvis aconseguits.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="alt" id="qui-som">
+    <div class="wrap">
+      <h2>Qui som?</h2>
+      <p class="intro">Som un equip de tres persones formades en gestió administrativa. Ens repartim les àrees clau del negoci perquè cada client tingui una persona de referència.</p>
+      <div class="team">
+        <div class="person">
+          <div class="avatar">NC</div>
+          <h3>Nom Cognom</h3>
+          <div class="role">Gerència i direcció comercial</div>
+          <p>Dirigeix l'empresa, capta clients i és la persona de referència en les reunions amb les empreses.</p>
+        </div>
+        <div class="person">
+          <div class="avatar">NC</div>
+          <h3>Nom Cognom</h3>
+          <div class="role">Responsable de compres i proveïdors</div>
+          <p>Busca i homologa proveïdors, negocia condicions i fa el seguiment de les comandes.</p>
+        </div>
+        <div class="person">
+          <div class="avatar">NC</div>
+          <h3>Nom Cognom</h3>
+          <div class="role">Responsable administrativa i financera</div>
+          <p>Controla factures, pagaments i comptabilitat, i prepara els informes mensuals dels clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="identitat">
+    <div class="wrap">
+      <h2>Identitat de l'empresa: missió, visió i valors</h2>
+      <div class="mvv">
+        <div class="box">
+          <h3>Missió</h3>
+          <p>Som l'equip que gestiona els proveïdors de les pimes perquè puguin comprar millor, amb menys feina i menys riscos. Ens adrecem a empreses que no tenen un departament de compres propi i volem cobrir la seva necessitat de tenir proveïdors fiables, ben negociats i controlats.</p>
+        </div>
+        <div class="box">
+          <h3>Visió</h3>
+          <p>Ser, d'aquí a cinc anys, l'empresa de referència en gestió externa de proveïdors a les comarques de Tarragona, reconeguda per la confiança dels clients i amb un equip més gran i un portal digital propi per a ells.</p>
+        </div>
+        <div class="box">
+          <h3>Valors</h3>
+          <ul>
+            <li><b>Responsabilitat:</b> complim terminis i compromisos.</li>
+            <li><b>Transparència:</b> preus i informes clars, sense lletra petita.</li>
+            <li><b>Confidencialitat:</b> protegim les dades dels clients i dels proveïdors.</li>
+            <li><b>Sostenibilitat:</b> prioritzem proveïdors responsables i de proximitat.</li>
+            <li><b>Treball en equip:</b> compartim informació i decidim junts.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Objectius empresarials</h3>
+          <ul>
+            <li>Arribar a <b>12 clients</b> durant el primer any, que és el nostre llindar de rendibilitat.</li>
+            <li>Aconseguir que els clients <b>estalviïn de mitjana un 10%</b> en les seves compres gestionades per nosaltres.</li>
+            <li>Mantenir una <b>fidelització del 85%</b> dels clients al segon any.</li>
+            <li>Tenir el <b>100% dels proveïdors</b> dels clients homologats i amb la documentació al dia.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="ods">
+    <div class="wrap">
+      <h2>Objectius de Desenvolupament Sostenible relacionats</h2>
+      <p class="intro">La nostra activitat contribueix a tres dels ODS de l'Agenda 2030.</p>
+      <div class="ods">
+        <div><b>ODS 8. Treball decent i creixement econòmic</b><span>Creem llocs de treball qualificats i ajudem les pimes a créixer de manera sòlida.</span></div>
+        <div><b>ODS 9. Indústria, innovació i infraestructura</b><span>Digitalitzem la gestió de proveïdors de les pimes amb eines i informes en línia.</span></div>
+        <div><b>ODS 12. Producció i consum responsables</b><span>Prioritzem proveïdors sostenibles i de proximitat, i reduïm compres innecessàries.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why" id="avantatges">
+    <div class="wrap">
+      <h2>Per què contractar PROVIGEST</h2>
+      <div class="why-grid">
+        <div class="why-item"><h3>Estalvies temps</h3><p>El teu equip deixa de perseguir albarans, pressupostos i lliuraments.</p></div>
+        <div class="why-item"><h3>Redueixes costos</h3><p>Comparem i negociem de manera contínua per millorar les teves condicions.</p></div>
+        <div class="why-item"><h3>Evites riscos</h3><p>Treballes només amb proveïdors revisats i amb la documentació al dia.</p></div>
+        <div class="why-item"><h3>Un sol contacte</h3><p>Una persona de PROVIGEST respon per tots els teus proveïdors.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacte">
+    <div class="wrap">
+      <div>
+        <h2>Parlem dels teus proveïdors</h2>
+        <p class="intro">Explica'ns quants proveïdors tens i què et dona problemes. Et responem en un dia laborable.</p>
+        <div class="card" style="margin-top:28px">
+          <p><strong>Correu</strong><a href="mailto:contacte@provigest.com">contacte@provigest.com</a></p>
+          <p><strong>Telèfon</strong>+34 000 000 000</p>
+          <p style="margin-bottom:0"><strong>Horari</strong>De dilluns a divendres, de 9:00 a 18:00</p>
+        </div>
+      </div>
+      <form class="card" id="formulari" aria-label="Formulari de contacte">
+        <label for="nom">Nom</label>
+        <input id="nom" type="text" autocomplete="name">
+        <label for="empresa">Empresa</label>
+        <input id="empresa" type="text" autocomplete="organization">
+        <label for="missatge">Què necessites?</label>
+        <textarea id="missatge"></textarea>
+        <button class="btn" type="button" id="enviar">Envia el missatge</button>
+      </form>
+    </div>
+  </section>
+</main>
+<script>
+  document.getElementById('enviar').addEventListener('click', function () {
+    var n = document.getElementById('nom').value;
+    var e = document.getElementById('empresa').value;
+    var m = document.getElementById('missatge').value;
+    var cos = 'Nom: ' + n + '\nEmpresa: ' + e + '\n\n' + m;
+    var url = 'mailto:contacte@provigest.com?subject=' +
+      encodeURIComponent('Consulta des del web de PROVIGEST') +
+      '&body=' + encodeURIComponent(cos);
+    window.open(url, '_top');
+  });
+</script>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 PROVIGEST. Tots els drets reservats.</span>
+    <span>Gestió de proveïdors per a empreses</span>
+  </div>
+</footer>
+</body>
+</html>

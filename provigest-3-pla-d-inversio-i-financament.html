@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROVIGEST · Pla d'inversió i finançament</title>
+<style>
+  :root{
+    --ink:#12263A;
+    --ink-soft:#4A5B6C;
+    --paper:#F3F6F8;
+    --white:#FFFFFF;
+    --teal:#0E7C86;
+    --teal-dark:#0A5C64;
+    --amber:#F2A33A;
+    --line:#D5DEE5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color:var(--ink);background:var(--paper);line-height:1.6;font-size:17px;
+  }
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  header{background:var(--white);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+  .logo{font-weight:800;font-size:22px;letter-spacing:.02em;color:var(--ink)}
+  .logo span{color:var(--teal)}
+  .pg{font-weight:600;font-size:15px;color:var(--ink-soft)}
+  .btn{
+    display:inline-block;background:var(--teal);color:var(--white);
+    padding:13px 26px;border-radius:6px;font-weight:700;text-decoration:none;
+    border:2px solid var(--teal);font-size:16px;
+  }
+  .btn:hover{background:var(--teal-dark);border-color:var(--teal-dark)}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--white)}
+
+  .hero{padding:72px 0 64px}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  h1{font-size:clamp(36px,5.2vw,58px);line-height:1.08;font-weight:800;letter-spacing:-.02em;max-width:14ch}
+  .lead{margin-top:22px;font-size:19px;color:var(--ink-soft);max-width:46ch}
+  .cta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+  .diagram{width:100%;height:auto}
+  .flow{stroke-dasharray:6 8;animation:flow 1.6s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-14}}
+  @media (prefers-reduced-motion:reduce){.flow{animation:none}}
+
+  .pagehead{padding:56px 0 8px}
+  .pagehead h1{max-width:none;font-size:clamp(32px,4.6vw,48px)}
+
+  section{padding:64px 0}
+  h2{font-size:clamp(26px,3.4vw,36px);line-height:1.15;font-weight:800;letter-spacing:-.01em;max-width:26ch}
+  h3{font-size:19px}
+  .intro{margin-top:14px;color:var(--ink-soft);max-width:62ch}
+  .alt{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .sub{margin-top:44px}
+  .sub h3{font-size:22px;padding-left:14px;border-left:5px solid var(--amber);margin-bottom:14px}
+  .sub p{margin-bottom:12px;max-width:72ch}
+  .sub ul{margin:6px 0 14px 22px;max-width:72ch}
+  .sub li{margin-bottom:6px}
+
+  .facts{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:10px;background:var(--white)}
+  .facts div{padding:18px 20px;border-right:1px solid var(--line)}
+  .facts div:last-child{border-right:0}
+  .facts small{display:block;color:var(--ink-soft);font-size:14px}
+  .facts b{font-size:17px}
+
+  .svc-grid{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+  .svc{padding:26px 28px 26px 0;border-bottom:1px solid var(--line)}
+  .svc:nth-child(3n+2),.svc:nth-child(3n){padding-left:28px;border-left:1px solid var(--line)}
+  .svc h3{margin-bottom:8px}
+  .svc p{color:var(--ink-soft);font-size:16px}
+
+  .steps{margin-top:36px;list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:s}
+  .steps li{counter-increment:s;padding-top:20px;border-top:4px solid var(--teal);position:relative}
+  .steps li::before{
+    content:counter(s);position:absolute;top:-4px;right:0;background:var(--amber);color:var(--ink);
+    font-weight:800;font-size:14px;width:28px;height:28px;display:grid;place-items:center;border-radius:0 0 0 8px;
+  }
+  .steps h3{font-size:18px;margin-bottom:6px}
+  .steps p{font-size:15.5px;color:var(--ink-soft)}
+
+  .team{margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .person{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:24px}
+  .avatar{width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--white);display:grid;place-items:center;font-weight:800;font-size:18px;margin-bottom:14px}
+  .person h3{font-size:18px}
+  .person .role{color:var(--teal-dark);font-weight:700;font-size:15px;margin-bottom:8px}
+  .person p{font-size:15.5px;color:var(--ink-soft)}
+
+  .mvv{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .mvv .box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:24px}
+  .mvv h3{margin-bottom:8px;color:var(--teal-dark)}
+  .mvv ul{margin-left:20px}
+  .mvv li{margin-bottom:6px}
+
+  .ods{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .ods div{padding:18px 20px;border-radius:8px;background:var(--ink);color:var(--white)}
+  .ods div:nth-child(2){background:var(--teal-dark)}
+  .ods div:nth-child(3){background:#8A5A0F}
+  .ods b{display:block;margin-bottom:6px}
+  .ods span{font-size:15px;color:#E1E9EF}
+
+  .why{background:var(--ink);color:var(--white)}
+  .why h2{color:var(--white)}
+  .why-grid{margin-top:34px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px 56px}
+  .why-item{padding-left:20px;border-left:4px solid var(--amber)}
+  .why-item h3{font-size:18px;margin-bottom:4px}
+  .why-item p{color:#C3D0DB;font-size:16px}
+
+  .tbl-wrap{overflow-x:auto;margin:10px 0 18px;border:1px solid var(--line);border-radius:10px;background:var(--white)}
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:15.5px}
+  th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:var(--ink);color:var(--white);font-weight:700}
+  td.n,th.n{text-align:right;white-space:nowrap}
+  tr.grp td{background:var(--paper);font-weight:700}
+  tr.tot td{background:#E7F2F3;font-weight:800;border-top:2px solid var(--teal)}
+  tr.hl td{background:#FFF4E0;font-weight:600}
+  tbody tr:last-child td{border-bottom:0}
+
+  .swot{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:10px 0 18px}
+  .swot div{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:20px 22px;border-top:5px solid var(--teal)}
+  .swot div.neg{border-top-color:var(--amber)}
+  .swot h4{font-size:18px;margin-bottom:8px}
+  .swot ul{margin-left:20px}
+  .swot li{margin-bottom:5px;font-size:15.5px}
+
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:12px 0 18px}
+  .plan{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:24px}
+  .plan.best{border:2px solid var(--teal)}
+  .plan h4{font-size:20px}
+  .price{font-size:30px;font-weight:800;color:var(--teal-dark);margin:6px 0 10px}
+  .price small{font-size:15px;font-weight:600;color:var(--ink-soft)}
+  .plan ul{margin-left:20px;font-size:15.5px}
+  .plan li{margin-bottom:5px}
+
+  .bar-fin{display:flex;height:34px;border-radius:8px;overflow:hidden;margin:14px 0 6px;font-size:13px;font-weight:700}
+  .bar-fin span{display:grid;place-items:center;color:var(--white);white-space:nowrap;padding:0 6px}
+  .legend{font-size:14px;color:var(--ink-soft);margin-bottom:14px}
+
+  .callout{background:#E7F2F3;border-left:5px solid var(--teal);border-radius:0 8px 8px 0;padding:18px 22px;margin:14px 0;max-width:72ch}
+
+  .links{margin-top:24px;list-style:none;display:grid;gap:12px;max-width:760px}
+  .links li{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:16px 20px}
+  .links a{font-weight:700;color:var(--teal-dark)}
+  .links p{font-size:15px;color:var(--ink-soft);margin-top:2px}
+
+  .contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:28px}
+  .card p{margin-bottom:10px}
+  .card strong{display:block;font-size:14px;color:var(--ink-soft);font-weight:600}
+  form label{display:block;font-weight:600;font-size:15px;margin:14px 0 6px}
+  form input,form textarea{width:100%;padding:12px;border:1px solid #9FB0BE;border-radius:6px;font:inherit;background:var(--white);color:var(--ink)}
+  form textarea{min-height:110px;resize:vertical}
+  form button{margin-top:18px;cursor:pointer;font:inherit;font-weight:700}
+
+  footer{padding:28px 0;border-top:1px solid var(--line);color:var(--ink-soft);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media (max-width:860px){
+    .hero .wrap,.contact .wrap,.mvv,.swot{grid-template-columns:1fr}
+    .svc-grid,.team,.plans,.ods{grid-template-columns:1fr}
+    .svc,.svc:nth-child(3n+2),.svc:nth-child(3n){padding:24px 0;border-left:0}
+    .steps{grid-template-columns:1fr 1fr}
+    .why-grid{grid-template-columns:1fr}
+    .facts{grid-template-columns:1fr 1fr}
+    .facts div{border-bottom:1px solid var(--line)}
+    .hero{padding:44px 0}
+    section{padding:48px 0}
+  }
+  @media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <span class="logo">PRO<span>VI</span>GEST</span>
+    <span class="pg">Pla d'inversió i finançament</span>
+  </div>
+</header>
+<main>
+  <div class="pagehead">
+    <div class="wrap">
+      <h1>Pla d'inversió i finançament. Viabilitat del projecte</h1>
+      <p class="intro">Aquí calculem quants diners necessitem per posar en marxa PROVIGEST, d'on els traiem i si l'empresa podrà ser rendible.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>1. Quadre resum del pla d'inversió</h2>
+      <p class="intro">La inversió inicial és de <b>22.000 €</b>.</p>
+      <div class="tbl-wrap" style="margin-top:20px">
+        <table>
+          <thead>
+            <tr><th>Concepte</th><th class="n">Import</th><th class="n">Vida útil</th><th class="n">Amortització anual</th></tr>
+          </thead>
+          <tbody>
+            <tr class="grp"><td colspan="4">Immobilitzat</td></tr>
+            <tr><td>Equips informàtics (3 portàtils i monitors)</td><td class="n">3.600 €</td><td class="n">4 anys</td><td class="n">900 €</td></tr>
+            <tr><td>Mobiliari d'oficina</td><td class="n">2.400 €</td><td class="n">10 anys</td><td class="n">240 €</td></tr>
+            <tr><td>Programari de gestió de proveïdors i CRM (implantació)</td><td class="n">2.500 €</td><td class="n">5 anys</td><td class="n">500 €</td></tr>
+            <tr><td>Web i imatge corporativa</td><td class="n">1.500 €</td><td class="n">3 anys</td><td class="n">500 €</td></tr>
+            <tr><td>Fiança del local (2 mesos de lloguer)</td><td class="n">1.800 €</td><td class="n">&ndash;</td><td class="n">&ndash;</td></tr>
+            <tr class="grp"><td colspan="4">Despeses de constitució</td></tr>
+            <tr><td>Notaria, registre mercantil i gestoria</td><td class="n">900 €</td><td class="n">5 anys</td><td class="n">180 €</td></tr>
+            <tr class="grp"><td colspan="4">Actiu corrent</td></tr>
+            <tr><td>Fons de maniobra (tresoreria per als primers mesos)</td><td class="n">9.300 €</td><td class="n">&ndash;</td><td class="n">&ndash;</td></tr>
+            <tr class="tot"><td>Total inversió</td><td class="n">22.000 €</td><td class="n"></td><td class="n">2.320 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2>2. Quadre resum del pla de finançament</h2>
+      <p class="intro">Combinem aportacions dels socis amb finançament extern perquè els recursos coincideixin amb la inversió.</p>
+      <div class="tbl-wrap" style="margin-top:20px">
+        <table>
+          <thead>
+            <tr><th>Font de finançament</th><th class="n">Import</th><th class="n">%</th><th>Condicions</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Capital aportat pels socis</td><td class="n">9.000 €</td><td class="n">40,9%</td><td>3 socis amb 3.000 € cadascun</td></tr>
+            <tr><td>Subvenció a l'emprenedoria (estimada)</td><td class="n">2.000 €</td><td class="n">9,1%</td><td>Pendent de sol·licitud i concessió</td></tr>
+            <tr><td>Préstec bancari</td><td class="n">8.000 €</td><td class="n">36,4%</td><td>5 anys, 6% d'interès, quota d'uns 155 € al mes</td></tr>
+            <tr><td>Pòlissa de crèdit</td><td class="n">3.000 €</td><td class="n">13,6%</td><td>Per a imprevistos de tresoreria</td></tr>
+            <tr class="tot"><td>Total finançament</td><td class="n">22.000 €</td><td class="n">100%</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bar-fin" role="img" aria-label="Capital 40,9%, subvenció 9,1%, préstec 36,4%, pòlissa 13,6%">
+        <span style="width:40.9%;background:#12263A">Capital 40,9%</span>
+        <span style="width:9.1%;background:#8A5A0F">9,1%</span>
+        <span style="width:36.4%;background:#0E7C86">Préstec 36,4%</span>
+        <span style="width:13.6%;background:#4A5B6C">13,6%</span>
+      </div>
+      <p class="legend">Capital dels socis, subvenció, préstec bancari i pòlissa de crèdit.</p>
+      <p>El pla de finançament és igual al d'inversió (22.000 €), de manera que l'empresa comença amb l'equilibri patrimonial garantit. El 50% del finançament prové dels socis i dels ajuts, i l'altre 50% és de bancs.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>3. Viabilitat financera del projecte</h2>
+      <p class="intro">Comparem els ingressos i les despeses previstos durant els dos primers anys.</p>
+
+      <div class="sub">
+        <h3>Compte de resultats previsional</h3>
+        <p><b>Any 1:</b> una mitjana de 6 clients Bàsic, 4 Professional i 1 Premium. <b>Any 2:</b> una mitjana de 8 clients Bàsic, 6 Professional i 2 Premium.</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr><th>Concepte</th><th class="n">Any 1</th><th class="n">Any 2</th></tr>
+            </thead>
+            <tbody>
+              <tr class="grp"><td colspan="3">Ingressos</td></tr>
+              <tr><td>Quotes mensuals dels clients</td><td class="n">61.080 €</td><td class="n">94.080 €</td></tr>
+              <tr class="grp"><td colspan="3">Despeses d'explotació</td></tr>
+              <tr><td>Personal (any 1: 1,5 persones; any 2: 2 persones)</td><td class="n">39.000 €</td><td class="n">52.000 €</td></tr>
+              <tr><td>Lloguer del local</td><td class="n">10.800 €</td><td class="n">10.800 €</td></tr>
+              <tr><td>Subministraments i telecomunicacions</td><td class="n">2.400 €</td><td class="n">2.600 €</td></tr>
+              <tr><td>Llicències de programari</td><td class="n">3.000 €</td><td class="n">3.600 €</td></tr>
+              <tr><td>Màrqueting i promoció</td><td class="n">3.600 €</td><td class="n">4.800 €</td></tr>
+              <tr><td>Assegurances i gestoria</td><td class="n">2.400 €</td><td class="n">2.800 €</td></tr>
+              <tr class="grp"><td colspan="3">Altres despeses</td></tr>
+              <tr><td>Amortitzacions</td><td class="n">2.320 €</td><td class="n">2.320 €</td></tr>
+              <tr><td>Despeses financeres (interessos)</td><td class="n">600 €</td><td class="n">480 €</td></tr>
+              <tr class="tot"><td>Resultat abans d'impostos</td><td class="n">&minus;3.040 €</td><td class="n">14.680 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sub">
+        <h3>Llindar de rendibilitat</h3>
+        <p>El primer any les despeses totals són d'uns 64.120 €, que són pràcticament fixes. Per cobrir-les calen uns <b>5.350 € d'ingressos al mes</b>, que equivalen a uns <b>12 clients</b> (per exemple, 7 Bàsic, 4 Professional i 1 Premium). A partir d'aquest punt, cada client nou aporta benefici.</p>
+      </div>
+
+      <div class="sub">
+        <h3>Conclusions</h3>
+        <ul>
+          <li>El primer any hi ha una pèrdua prevista petita (3.040 €), normal en una empresa que encara construeix la cartera de clients.</li>
+          <li>El fons de maniobra de 9.300 € cobreix aquesta pèrdua i les quotes del préstec, de manera que la tresoreria es manté positiva.</li>
+          <li>El segon any l'empresa ja supera el llindar de rendibilitat i obté un benefici previst de 14.680 € abans d'impostos.</li>
+          <li>La capacitat de l'equip és suficient per atendre els clients previstos sense necessitar més inversió.</li>
+        </ul>
+        <div class="callout"><b>Conclusió:</b> el projecte és financerament viable, sempre que s'aconsegueixin uns 12 clients durant el primer any i mig. L'esforç comercial dels primers mesos és la clau perquè el pla es compleixi.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 PROVIGEST. Tots els drets reservats.</span>
+    <span>Gestió de proveïdors per a empreses</span>
+  </div>
+</footer>
+</body>
+</html>
